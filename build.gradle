@@ -15,6 +15,7 @@ dependencies {
     annotationProcessor(mn.micronaut.http.validation)
     annotationProcessor(mn.micronaut.serde.processor)
     annotationProcessor(mn.micronaut.data.processor)
+    annotationProcessor(mn.micronaut.openapi)
 
     implementation(mn.micronaut.context.propagation)
     implementation(mn.micronaut.reactor)
@@ -26,6 +27,7 @@ dependencies {
 
     compileOnly(mn.micronaut.http.client)
     compileOnly(mn.jakarta.persistence.api)
+    compileOnly(mn.micronaut.openapi.annotations)
 
     runtimeOnly(mn.logback.classic)
     runtimeOnly(mn.snakeyaml)
