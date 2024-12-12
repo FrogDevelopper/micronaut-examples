@@ -1,7 +1,7 @@
 plugins {
     id("com.github.johnrengelman.shadow") version "8.1.1"
-    id("io.micronaut.application") version "4.4.4"
-    id("io.micronaut.aot") version "4.4.4"
+    id("io.micronaut.minimal.application") version "4.4.4"
+//    id("io.micronaut.aot") version "4.4.4"
 }
 
 version = "0.1"
@@ -13,9 +13,13 @@ repositories {
 
 dependencies {
     annotationProcessor(mn.micronaut.http.validation)
+    annotationProcessor(mn.micronaut.validation.processor)
     annotationProcessor(mn.micronaut.serde.processor)
     annotationProcessor(mn.micronaut.data.processor)
     annotationProcessor(mn.micronaut.openapi)
+    annotationProcessor(mn.lombok)
+
+    implementation(mn.micronaut.openapi)
 
     implementation(mn.micronaut.context.propagation)
     implementation(mn.micronaut.reactor)
@@ -24,7 +28,9 @@ dependencies {
     implementation(mn.micronaut.jdbc.hikari)
     implementation(mn.micronaut.flyway)
     implementation(mn.micronaut.pulsar)
+    implementation(mn.micronaut.validation)
 
+    compileOnly(mn.lombok)
     compileOnly(mn.micronaut.http.client)
     compileOnly(mn.jakarta.persistence.api)
     compileOnly(mn.micronaut.openapi.annotations)
@@ -49,7 +55,7 @@ java {
 }
 
 
-graalvmNative.toolchainDetection = false
+//graalvmNative.toolchainDetection = false
 
 micronaut {
     runtime("netty")
@@ -58,23 +64,23 @@ micronaut {
         incremental(true)
         annotations("com.frogdevelopment.*")
     }
-    aot {
-        // Please review carefully the optimizations enabled below
-        // Check https://micronaut-projects.github.io/micronaut-aot/latest/guide/ for more details
-        optimizeServiceLoading = false
-        convertYamlToJava = false
-        precomputeOperations = true
-        cacheEnvironment = true
-        optimizeClassLoading = true
-        deduceEnvironment = true
-        optimizeNetty = true
-        replaceLogbackXml = true
-    }
+//    aot {
+//        // Please review carefully the optimizations enabled below
+//        // Check https://micronaut-projects.github.io/micronaut-aot/latest/guide/ for more details
+//        optimizeServiceLoading = false
+//        convertYamlToJava = false
+//        precomputeOperations = true
+//        cacheEnvironment = true
+//        optimizeClassLoading = true
+//        deduceEnvironment = true
+//        optimizeNetty = true
+//        replaceLogbackXml = true
+//    }
 }
 
 
-tasks.named("dockerfileNative") {
-    jdkVersion = "21"
-}
+//tasks.named("dockerfileNative") {
+//    jdkVersion = "21"
+//}
 
 

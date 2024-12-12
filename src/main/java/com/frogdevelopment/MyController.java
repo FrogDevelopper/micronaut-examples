@@ -6,6 +6,7 @@ import static io.micronaut.scheduling.TaskExecutors.BLOCKING;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
@@ -31,7 +32,7 @@ public class MyController {
     @Get("/search")
     public HttpResponse<Page<MyItem>> searchItems(Pageable pageable) {
         final var items = IntStream.range(0, pageable.getSize())
-                .mapToObj(i -> new MyItem("field_" + i, i))
+                .mapToObj(i -> new MyItem("field_" + i, i, Map.of()))
                 .collect(Collectors.toCollection(ArrayList::new));
         final var page = Page.of(items, pageable, pageable.getSize()* 3L);
         log.info("Searched items: {}", page);
