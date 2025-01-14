@@ -1,15 +1,12 @@
 services:
 
-  pulsar:
-    image: apachepulsar/pulsar:3.1.1
-    hostname: pulsar
+  mariadb:
+    hostname: mariadb
+    image: bitnami/mariadb:10.5.12
     ports:
-      - "6650:6650"
-      - "16680:8080"
+      - "3306:3306"
     environment:
-      PULSAR_MEM: "-Xms500m -Xmx1g -XX:MaxDirectMemorySize=500m"
-      PULSAR_PREFIX_advertisedAddress: 127.0.0.1
-    command: "sh -c '/pulsar/bin/apply-config-from-env.py /pulsar/conf/standalone.conf; /pulsar/bin/pulsar standalone'"
+      MARIADB_ROOT_PASSWORD: example
     logging:
       driver: "json-file"
       options:

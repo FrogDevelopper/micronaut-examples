@@ -2,5 +2,5 @@ plugins {
     id("io.micronaut.platform.catalog") version "4.4.2"
 }
 
-rootProject.name = "micronaut-4_5"
+rootProject.name = "micronaut-examples"
 

@@ -1,7 +1,5 @@
 plugins {
-    id("com.github.johnrengelman.shadow") version "8.1.1"
-    id("io.micronaut.application") version "4.4.2"
-    id("io.micronaut.aot") version "4.4.2"
+    id("io.micronaut.minimal.application") version "4.4.2"
 }
 
 version = "0.1"
@@ -23,16 +21,14 @@ dependencies {
     implementation(mn.micronaut.data.jdbc)
     implementation(mn.micronaut.jdbc.hikari)
     implementation(mn.micronaut.flyway)
-    implementation(mn.micronaut.pulsar)
 
     compileOnly(mn.micronaut.http.client)
-    compileOnly(mn.jakarta.persistence.api)
     compileOnly(mn.micronaut.openapi.annotations)
 
     runtimeOnly(mn.logback.classic)
     runtimeOnly(mn.snakeyaml)
-    runtimeOnly(mn.mysql.connector.j)
-    runtimeOnly(mn.h2)
+    runtimeOnly(mn.mariadb.java.client)
+    runtimeOnly(mn.flyway.mysql)
 
     testImplementation(mn.micronaut.http.client)
     testImplementation(mn.mockito.core)
@@ -49,8 +45,6 @@ java {
 }
 
 
-graalvmNative.toolchainDetection = false
-
 micronaut {
     runtime("netty")
     testRuntime("junit5")
@@ -58,23 +52,4 @@ micronaut {
         incremental(true)
         annotations("com.frogdevelopment.*")
     }
-    aot {
-        // Please review carefully the optimizations enabled below
-        // Check https://micronaut-projects.github.io/micronaut-aot/latest/guide/ for more details
-        optimizeServiceLoading = false
-        convertYamlToJava = false
-        precomputeOperations = true
-        cacheEnvironment = true
-        optimizeClassLoading = true
-        deduceEnvironment = true
-        optimizeNetty = true
-        replaceLogbackXml = true
-    }
 }
-
-
-tasks.named("dockerfileNative") {
-    jdkVersion = "21"
-}
-
-

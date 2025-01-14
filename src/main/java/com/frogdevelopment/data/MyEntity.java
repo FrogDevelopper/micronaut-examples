@@ -1,19 +1,16 @@
 package com.frogdevelopment.data;
 
-import static jakarta.persistence.GenerationType.IDENTITY;
+import static io.micronaut.data.annotation.GeneratedValue.Type.IDENTITY;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
-
+import io.micronaut.data.annotation.GeneratedValue;
+import io.micronaut.data.annotation.Id;
+import io.micronaut.data.annotation.MappedEntity;
 import io.micronaut.serde.annotation.Serdeable;
 
-@Entity
 @Serdeable
-@Table(name = "entities")
+@MappedEntity(value = "entities")
 public record MyEntity(
-        @Id @GeneratedValue(strategy = IDENTITY) Long id,
+        @Id @GeneratedValue(IDENTITY) Long id,
         String field1,
         Integer field2
 ) {
