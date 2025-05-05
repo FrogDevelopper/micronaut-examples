@@ -13,36 +13,14 @@ repositories {
 
 dependencies {
     annotationProcessor(mn.micronaut.http.validation)
-    annotationProcessor(mn.micronaut.validation.processor)
     annotationProcessor(mn.micronaut.serde.processor)
-    annotationProcessor(mn.micronaut.data.processor)
-    annotationProcessor(mn.micronaut.openapi)
-    annotationProcessor(mn.lombok)
 
-    implementation(mn.micronaut.openapi)
-
-    implementation(mn.micronaut.context.propagation)
-    implementation(mn.micronaut.reactor)
+    implementation(mn.micronaut.http.client)
+    implementation(mn.micronaut.discovery.client)
     implementation(mn.micronaut.serde.jackson)
-    implementation(mn.micronaut.data.jdbc)
-    implementation(mn.micronaut.jdbc.hikari)
-    implementation(mn.micronaut.flyway)
-    implementation(mn.micronaut.pulsar)
-    implementation(mn.micronaut.validation)
-
-    compileOnly(mn.lombok)
-    compileOnly(mn.micronaut.http.client)
-    compileOnly(mn.jakarta.persistence.api)
-    compileOnly(mn.micronaut.openapi.annotations)
 
     runtimeOnly(mn.logback.classic)
     runtimeOnly(mn.snakeyaml)
-    runtimeOnly(mn.mysql.connector.j)
-    runtimeOnly(mn.h2)
-
-    testImplementation(mn.micronaut.http.client)
-    testImplementation(mn.mockito.core)
-    testImplementation(mn.assertj.core)
 }
 
 

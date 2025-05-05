@@ -1,0 +1,16 @@
+micronaut:
+  application:
+    name: micronaut-example
+
+  config-client:
+    enabled: true
+
+consul:
+  client:
+    host: localhost
+    port: 8500
+    asl-token: xxxxx
+    config:
+      format: yaml
+    registration:
+      enabled: false
