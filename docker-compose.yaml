@@ -1,20 +1,17 @@
 services:
 
-  consul:
-    image: hashicorp/consul:1.20.6
+  pulsar:
+    image: apachepulsar/pulsar:3.1.1
+    hostname: pulsar
     ports:
-      - "8500:8500"
-      - "8600:8600/tcp"
-      - "8600:8600/udp"
-    command: "agent -bootstrap"
-    volumes:
-      - ./consul/server.json:/consul/config/server.json:ro
-      - consul_data:/consul/data
+      - "6650:6650"
+      - "16680:8080"
+    environment:
+      PULSAR_MEM: "-Xms500m -Xmx1g -XX:MaxDirectMemorySize=500m"
+      PULSAR_PREFIX_advertisedAddress: 127.0.0.1
+    command: "sh -c '/pulsar/bin/apply-config-from-env.py /pulsar/conf/standalone.conf; /pulsar/bin/pulsar standalone'"
     logging:
       driver: "json-file"
       options:
         max-size: "100k"
         max-file: "1"
-
-volumes:
-  consul_data:

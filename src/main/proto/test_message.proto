@@ -1,0 +1,43 @@
+syntax = "proto3";
+package com.frogdevelopment.pulsar.proto;
+
+import "google/protobuf/timestamp.proto";
+
+message TestMessage {
+  bool bool_type = 1;
+  int32 int_type = 2;
+  int64 long_type = 3;
+  float float_type = 4;
+  double double_type = 5;
+  string string_type = 6;
+  bytes bytes_type = 7;
+  TestFlags enum_type = 8;
+  google.protobuf.Timestamp timestamp_type = 9;
+  repeated int32 repeated_int_types = 10;
+  repeated NestedTestMessage repeated_complex_types = 11;
+  map<string, NestedTestMessage> map_of_complex_types = 12;
+}
+
+message NestedTestMessage {
+  optional bool bool_type = 1;
+  optional int32 int_type = 2;
+  optional int64 long_type = 3;
+  optional float float_type = 4;
+  optional double double_type = 5;
+  optional string string_type = 6;
+  optional bytes bytes_type = 7;
+  optional TestFlags enum_type = 8;
+  optional google.protobuf.Timestamp timestamp_type = 9;
+}
+
+enum TestFlags {
+  UNSET = 0;
+  FOO = 1;
+  BAR = 2;
+}
+
+message FieldNameMappingExample {
+  string word = 1;
+  string two_words = 2;
+  string three_words_present = 3;
+}

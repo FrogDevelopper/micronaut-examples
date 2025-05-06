@@ -1,0 +1,6 @@
+micronaut:
+  application:
+    name: micronaut-pulsar
+
+pulsar:
+  service-url: pulsar://${PULSAR_HOST:127.0.0.1}:${PULSAR_TCP_6650:6650}
