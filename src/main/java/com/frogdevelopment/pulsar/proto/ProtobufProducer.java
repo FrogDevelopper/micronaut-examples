@@ -7,6 +7,8 @@ import io.micronaut.pulsar.annotation.PulsarProducerClient;
 @PulsarProducerClient
 public interface ProtobufProducer {
 
-    @PulsarProducer(schema = MessageSchema.PROTOBUF, topic = "persistent://public/default/messages", producerName = "protobuf-producer")
+    @PulsarProducer(schema = MessageSchema.PROTOBUF,
+                    topic = "persistent://public/default/messages",
+                    producerName = "protobuf-producer")
     void sendBlocking(TestMessageOuterClass.TestMessage message);
 }
